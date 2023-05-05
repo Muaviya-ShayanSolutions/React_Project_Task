@@ -1,6 +1,5 @@
 import React from "react";
 import "./searchStyle.css";
-// import { FaSearch } from "react-icons/fa";
 
 const SearchBarComp = () => {
   return (

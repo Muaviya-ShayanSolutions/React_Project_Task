@@ -22,7 +22,7 @@ const Card = () => {
     navigate("/country-detail");
   };
 
-  const test = countriesData.map((country, index) => {
+  const countryCard = countriesData.map((country, index) => {
     return (
       <>
         <div className="card" onClick={navigateToContacts}>
@@ -51,7 +51,6 @@ const Card = () => {
       </>
     );
   });
-  return <div className="card-container">{test}</div>;
-  //<div className="card-container">{countryCard}</div>;
+  return <div className="card-container">{countryCard}</div>;
 };
 export default Card;
