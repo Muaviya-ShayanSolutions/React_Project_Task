@@ -6,7 +6,7 @@ const Navbar = () => {
     return "light";
   }); 
   const toggleMode = () => {
-    console.log(mode)
+
     if (mode === "light") {
       setMode("dark");
       document.body.style.backgroundColor = "#1F2C35";

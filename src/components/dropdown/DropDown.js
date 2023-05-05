@@ -5,7 +5,6 @@ function DropdownMenu() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
-    console.log(isOpen);
     setIsOpen(!isOpen);
   };
 
