@@ -1,39 +1,46 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./cardStyle.css";
-import URLs from "../../utils/constants.js";
+import * as CONSTANT from "../../utils/constants.js";
 const Card = () => {
-  const [countriesData, getData] = useState([]);
-  const fetchUserData = () => {
-    fetch(URLs.getAllCountries)
+  const [countriesData, setCountriesData] = useState([]);
+  const fetchCountryData = () => {
+    fetch(
+      `${CONSTANT.getAllCountries}?fields=name,population,region,capital,flags`
+    )
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        getData(data);
+        setCountriesData(data);
       });
   };
   useEffect(() => {
-    fetchUserData();
+    fetchCountryData();
   }, []);
 
   const navigate = useNavigate();
-  const navigateToContacts = () => {
-    navigate("/country-detail");
-  };
 
   const countryCard = countriesData.map((country, index) => {
     return (
       <>
-        <div className="card" onClick={navigateToContacts}>
+        <div
+          key={index}
+          className="card"
+          onClick={() =>
+            navigate("/country-detail", {
+              state: { countryName: country.name.official },
+            })
+          }
+        >
           <img
             className="flag-image"
             src={country.flags.png}
-            alt={country.name.common}
+            alt={country.name.official}
           />
           <div className="card-body">
             <h5 className="card-title">
-              <b>{country.name.common}</b>
+              <b>{country.name.official}</b>
             </h5>
             <div className="card-desc">
               <p>

@@ -1,16 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons'
 
 const CustomButton = (props) => {
+  
   const navigate = useNavigate();
   return (
     <>
       <button className="button-back" onClick={() => navigate("/")}>
-        <i
-          className="fa fa-arrow-left"
-          aria-hidden="true"
-          style={{ fontsize: "16px" }}
-        ></i>
+      <FontAwesomeIcon icon={faArrowLeftLong}  />
         <span className="mx-2"></span>
         {props.title}
       </button>

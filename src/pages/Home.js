@@ -5,6 +5,7 @@ import SearchBarComp from "../components/searchbar/SearchBar";
 import Card from "../components/card/Card.js";
 
 const Home = () => {
+  
   return (
     <>
       <Navbar />
