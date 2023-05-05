@@ -1,0 +1,18 @@
+.nav-main{
+  /* height: 60px; */
+  background-color:white;
+  line-height: 25px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}.nav-cont{
+    margin-right :100px;
+    margin-left:100px;
+    display: flex;
+    justify-content: space-between;
+    padding: 35px 0
+  }
+  .nav-item-1{
+    font-size: 35px;
+    font-weight: 800;
+    line-height: 25px;
+  }
+  
