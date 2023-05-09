@@ -1,25 +1,20 @@
-*{
-  font-family:  Nunito Sans;
-}
-body {
-  margin: 0;
-  background-color: #F0F0F0;
- 
+* {
+  font-family: Nunito Sans;
 }
 
-
-.base{
-  margin-top :50px;
-  margin-right :100px;
-  margin-left:100px;
-  margin-bottom :50px;
+.base.margin-l-r {
+  margin-top: 50px;
+  margin-bottom: 30px;
 }
-.spc-btw{
+.base {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.spc-btw {
   display: flex;
   justify-content: space-between;
 }
 .button-back {
-  background-color: white; /* Green */
   border: none;
   color: black;
   padding: 8px 30px;
@@ -30,5 +25,24 @@ body {
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 5px;
-  box-shadow: 0px 0px 10px 1px grey;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+@media only screen and (max-width: 500px) {
+  .spc-btw {
+    display: block;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .spc-btw {
+    display: block;
+  }
+}
+@media only screen and (max-width: 380px) {
+  .spc-btw {
+    display: block;
+  }
+  .button-back {
+    margin: 4px 10px;
+    font-size: 12px;
+  }
 }

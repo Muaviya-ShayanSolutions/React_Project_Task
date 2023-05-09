@@ -1,31 +1,48 @@
-import React,{useState} from "react";
+import React from "react";
+
 import "../.././index.css";
 import "./navbarStyle.css";
-
+import * as CONSTANT from "../../utils/constants.js";
+import { setVariable } from "../../redux/action";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 const Navbar = () => {
-  const [mode, setMode] = useState(() => {
-    return "light";
-  }); 
+  const dispatch = useDispatch();
+  const mode = useSelector((state) => state?.variable);
   const toggleMode = () => {
-
-    if (mode === "light") {
-      setMode("dark");
-      document.body.style.backgroundColor = "#1F2C35";
+    if (mode.type === CONSTANT.LIGHT_MODE.type) {
+      dispatch(setVariable(CONSTANT.DARK_MODE));
     } else {
-      setMode("light");
-      document.body.style.backgroundColor = "#F0F0F0";
+      dispatch(setVariable(CONSTANT.LIGHT_MODE));
     }
   };
-  
+
   return (
     <>
-      <div className="nav-main">
-        <div className="nav-cont">
+      <div
+        className="nav-main "
+        style={
+          mode.type === CONSTANT.LIGHT_MODE.type
+            ? {
+                backgroundColor: CONSTANT.LIGHT_MODE.backgroundColor,
+                color: CONSTANT.LIGHT_MODE.textColor,
+              }
+            : {
+                backgroundColor: CONSTANT.DARK_MODE.cardBackground,
+                color: CONSTANT.DARK_MODE.textColor,
+              }
+        }
+      >
+        <div className="nav-cont margin-l-r">
           <div className="nav-item-1">Where in the world?</div>
           <div className="nav-item-2 " onClick={toggleMode}>
-            <i className="fa fa-moon-o p-1" style={{ fontsize: "16px",fontWeight:"800" }}></i>
-            {/* <b >Light Mode</b> */}
-            Light Mode
+            <i
+              className={`fa fa-moon-o p-1 `}
+              style={{ fontsize: "16px", fontWeight: "800" }}
+            ></i>
+            {mode.type === CONSTANT.LIGHT_MODE.type
+              ? "Dark Mode"
+              : "Light Mode"}
           </div>
         </div>
       </div>

@@ -1,63 +1,50 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./cardStyle.css";
+import React from "react";
 import * as CONSTANT from "../../utils/constants.js";
-const Card = () => {
-  const [countriesData, setCountriesData] = useState([]);
-  const fetchCountryData = () => {
-    fetch(
-      `${CONSTANT.getAllCountries}?fields=name,population,region,capital,flags`
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setCountriesData(data);
-      });
-  };
-  useEffect(() => {
-    fetchCountryData();
-  }, []);
-
-  const navigate = useNavigate();
-
-  const countryCard = countriesData.map((country, index) => {
-    return (
-      <>
-        <div
-          key={index}
-          className="card"
-          onClick={() =>
-            navigate("/country-detail", {
-              state: { countryName: country.name.official },
-            })
-          }
-        >
-          <img
-            className="flag-image"
-            src={country.flags.png}
-            alt={country.name.official}
-          />
-          <div className="card-body">
-            <h5 className="card-title">
-              <b>{country.name.official}</b>
-            </h5>
-            <div className="card-desc">
-              <p>
-                <b>Population: </b> {country.population}
-              </p>
-              <p>
-                <b>Region: </b> {country.region}
-              </p>
-              <p>
-                <b>Capital: </b> {country.capital[0]}
-              </p>
-            </div>
+import "./cardStyle.css";
+import { useSelector } from "react-redux";
+const Card = (props) => {
+  const mode = useSelector((state) => state?.variable);
+  const countryCard = (
+    <>
+      <div
+        className="card"
+        style={
+          mode.type === CONSTANT.LIGHT_MODE.type
+            ? {
+                backgroundColor: CONSTANT.LIGHT_MODE.backgroundColor,
+                color: CONSTANT.LIGHT_MODE.textColor,
+              }
+            : {
+                backgroundColor: CONSTANT.DARK_MODE.cardBackground,
+                color: CONSTANT.DARK_MODE.textColor,
+              }
+        }
+      >
+        <img
+          className="flag-image"
+          src={props.country.flags.png}
+          alt={props.country.name.official}
+        />
+        <div className="card-body">
+          <h5 className="card-title">
+            <b>{props.country.name.common}</b>
+          </h5>
+          <div className="card-desc">
+            <p>
+              <b>Population: </b> {props.country.population.toLocaleString()}
+            </p>
+            <p>
+              <b>Region: </b> {props.country.region}
+            </p>
+            <p style={{ paddingBottom: "20px" }}>
+              <b>Capital: </b> {props.country.capital[0]}
+            </p>
           </div>
         </div>
-      </>
-    );
-  });
-  return <div className="card-container">{countryCard}</div>;
+      </div>
+    </>
+  );
+
+  return countryCard;
 };
 export default Card;
