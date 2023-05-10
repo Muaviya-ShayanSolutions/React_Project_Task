@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-self-assign */
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +11,9 @@ import "../components/card/cardStyle.css";
 import Loader from "../components/Loader/Loader";
 import { useSelector } from "react-redux";
 const Home = () => {
+  useEffect(() => {
+    fetchCountryData();
+  }, []);
   const navigate = useNavigate();
   const [countriesData, setCountriesData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -18,6 +22,7 @@ const Home = () => {
   const mode = useSelector((state) => state?.variable);
   const fetchCountryData = () => {
     setIsLoading(true);
+    console.log("1isLoading-->", isLoading);
     fetch(
       `${CONSTANT.getAllCountries}?fields=name,population,region,capital,flags`
     )
@@ -28,10 +33,8 @@ const Home = () => {
         setCountriesData(data);
       });
     setIsLoading(false);
+    console.log("2isLoading-->", isLoading);
   };
-  useEffect(() => {
-    fetchCountryData();
-  }, []);
 
   if (selectedRegion === "All") {
     selectedRegion = "";
@@ -59,11 +62,13 @@ const Home = () => {
         }
       >
         <Navbar />
-        {isLoading === true ? (
+
+        {isLoading ? (
           <Loader />
         ) : (
           <>
             <div className="margin-l-r base spc-btw">
+              {/* <div style={{ color: "red" }}>{isLoading}</div> */}
               <SearchBarComp
                 searchText={searchText}
                 setSearchText={setSearchText}

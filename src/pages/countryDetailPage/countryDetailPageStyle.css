@@ -51,50 +51,15 @@ img {
   .img-flag {
     height: 250px;
   }
+  .border-buttons {
+    margin: 0px 0px 0px -4px;
+  }
   .m {
     margin-left: -25px;
   }
   .border-detail {
     display: block !important;
     padding-left: 13px;
-  }
-}
-@media only screen and (max-width: 430px) {
-  .mob-view {
-    display: block !important;
-    margin-left: 10px;
-    margin-right: 10px;
-  }
-  .mob-view .col-6 {
-    width: 100% !important;
-    padding-right: 0px !important;
-    padding-left: 0 !important;
-  }
-  .flag-detail p {
-    font-size: 14px;
-  }
-  .border-buttons button {
-    font-size: 12px;
-  }
-  .img-flag {
-    height: 200px;
-  }
-  .countryName {
-    font-weight: bolder;
-    margin: 30px 25px;
-    font-size: 20px;
-  }
-
-  .flag-detail {
-    margin-right: 0;
-    margin-left: 25px;
-  }
-  .border-detail {
-    display: block !important;
-    padding-left: 0;
-  }
-  .border-buttons {
-    margin: 0px 0px 0px 0px;
   }
 }
 @media only screen and (max-width: 500px) {
@@ -132,9 +97,48 @@ img {
     padding-left: 0;
   }
   .border-buttons {
-    margin: 0px 0px 0px 0px;
+    margin: 0px 0px 0px -4px;
   }
 }
+@media only screen and (max-width: 430px) {
+  .mob-view {
+    display: block !important;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .mob-view .col-6 {
+    width: 100% !important;
+    padding-right: 0px !important;
+    padding-left: 0 !important;
+  }
+  .flag-detail p {
+    font-size: 14px;
+  }
+  .border-buttons button {
+    font-size: 12px;
+  }
+  .img-flag {
+    height: 200px;
+  }
+  .countryName {
+    font-weight: bolder;
+    margin: 30px 25px;
+    font-size: 20px;
+  }
+
+  .flag-detail {
+    margin-right: 0;
+    margin-left: 25px;
+  }
+  .border-detail {
+    display: block !important;
+    padding-left: 0;
+  }
+  .border-buttons {
+    margin: 0px 0px 0px -4px;
+  }
+}
+
 @media only screen and (max-width: 380px) {
   .mob-view {
     display: block !important;
@@ -169,6 +173,6 @@ img {
     padding-left: 0;
   }
   .border-buttons {
-    margin: 0px 0px 0px 0px;
+    margin: 0px 0px 0px -4px;
   }
 }

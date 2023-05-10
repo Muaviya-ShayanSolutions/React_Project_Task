@@ -10,12 +10,11 @@ import Loader from "../../components/Loader/Loader";
 import { useSelector } from "react-redux";
 
 const CountryDetail = () => {
-  const location = useLocation();
-  const countryName = location.state.countryName;
   useEffect(() => {
     fetchCountryDetail();
   }, []);
-
+  const location = useLocation();
+  const countryName = location.state.countryName;
   const mode = useSelector((state) => state?.variable);
   const [countryDetail, setCountryDetail] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -23,7 +22,6 @@ const CountryDetail = () => {
 
   const fetchCountryDetail = () => {
     setIsLoading(true);
-    let tempArray = [];
     fetch(
       `${CONSTANT.getCountryDetail}${countryName}?fields=name,population,region,capital,flags,subregion,tld,currencies,languages,borders`
     )
@@ -31,22 +29,26 @@ const CountryDetail = () => {
         return response.json();
       })
       .then((data) => {
-        data[0]?.borders?.map((country) => {
-          fetch(`${CONSTANT.getCountryByCode}${country}?fields=name,capital`)
-            .then((response) => {
-              return response.json();
-            })
-            .then((borderData) => {
-              tempArray.push({
-                common: borderData.name.common,
-                capital: borderData.capital[0],
-              });
-              setBorderCountries(tempArray);
-            });
-          return true;
-        });
         setCountryDetail(data);
-        setIsLoading(false);
+        Promise.all(
+          data?.[0]?.borders?.map((country) => {
+            return fetch(
+              `${CONSTANT.getCountryByCode}${country}?fields=name,capital`
+            ).then((response) => {
+              return response.json();
+            });
+          })
+        ).then((borderData) => {
+          setBorderCountries(
+            borderData.map((data, index) => {
+              return {
+                common: data.name.common,
+                capital: data.capital[0],
+              };
+            })
+          );
+          setIsLoading(false);
+        });
       });
   };
 
@@ -97,11 +99,11 @@ const CountryDetail = () => {
                                 index === 0 ? name : `, ${name}`;
                               return (
                                 <span
+                                  key={Nativename}
                                   style={{
                                     fontSize: "16px",
                                     fontWeight: "300px",
                                   }}
-                                  key={Nativename}
                                 >
                                   {" "}
                                   {Nativename}{" "}
@@ -148,11 +150,11 @@ const CountryDetail = () => {
                           Object.keys(data?.currencies).map((currency) => {
                             return (
                               <span
+                                key={Object.values(currency)}
                                 style={{
                                   fontSize: "16px",
                                   fontWeight: "300px",
                                 }}
-                                key={Object.keys(currency)}
                               >
                                 {currency}
                               </span>
@@ -165,11 +167,11 @@ const CountryDetail = () => {
                           Object.values(data?.languages).map((lang) => {
                             return (
                               <span
+                                key={lang}
                                 style={{
                                   fontSize: "16px",
                                   fontWeight: "300px",
                                 }}
-                                key={lang}
                               >
                                 {" "}
                                 {lang}{" "}
@@ -187,6 +189,7 @@ const CountryDetail = () => {
                               if (country) {
                                 return (
                                   <button
+                                    key={country.common}
                                     style={
                                       mode.type === CONSTANT.LIGHT_MODE.type
                                         ? {
@@ -202,7 +205,6 @@ const CountryDetail = () => {
                                               CONSTANT.DARK_MODE.cardBackground,
                                           }
                                     }
-                                    key={country.common}
                                     onClick={() => {
                                       navigate(
                                         `/country-detail/${country.common}`,

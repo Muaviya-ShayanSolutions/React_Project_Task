@@ -3,9 +3,10 @@
 }
 
 .has-search .form-control {
-  padding: 15px 67px;
+  padding: 14px 67px;
   font-weight: 600px;
   border: none;
+  outline: none;
 }
 .form-control::placeholder {
   color: hsl(0, 0%, 52%);
@@ -44,6 +45,11 @@
 @media only screen and (max-width: 770px) {
   .main {
     width: 470px;
+  }
+}
+@media only screen and (max-width: 770px) {
+  .main {
+    width: 420px;
   }
 }
 
