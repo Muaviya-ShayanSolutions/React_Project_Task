@@ -8,11 +8,12 @@ import { useLocation } from "react-router-dom";
 import * as CONSTANT from "../../utils/constants.js";
 import Loader from "../../components/Loader/Loader";
 import { useSelector } from "react-redux";
-
-const CountryDetail = () => {
+import currencyCodes from "currency-codes";
+const CountryDetail = (currency) => {
   useEffect(() => {
     fetchCountryDetail();
   }, []);
+
   const location = useLocation();
   const countryName = location.state.countryName;
   const mode = useSelector((state) => state?.variable);
@@ -30,8 +31,9 @@ const CountryDetail = () => {
       })
       .then((data) => {
         setCountryDetail(data);
+
         Promise.all(
-          data?.[0]?.borders?.map((country) => {
+          data?.[0]?.borders.map((country) => {
             return fetch(
               `${CONSTANT.getCountryByCode}${country}?fields=name,capital`
             ).then((response) => {
@@ -40,13 +42,16 @@ const CountryDetail = () => {
           })
         ).then((borderData) => {
           setBorderCountries(
-            borderData.map((data, index) => {
-              return {
-                common: data.name.common,
-                capital: data.capital[0],
-              };
-            })
+            borderData
+              .map((data, index) => {
+                return {
+                  common: data.name.common,
+                  capital: data.capital[0],
+                };
+              })
+              .sort((a, b) => a.common.localeCompare(b.common))
           );
+
           setIsLoading(false);
         });
       });
@@ -55,7 +60,7 @@ const CountryDetail = () => {
   const navigate = useNavigate();
   const countryData = countryDetail.map((data) => {
     return (
-      <div key={data?.name.official}>
+      <div key={data?.name.official} >
         <Navbar />
         <div className="base margin-l-r mt-0 mb-0 pt-5 pb-5">
           {isLoading === true ? (
@@ -63,17 +68,16 @@ const CountryDetail = () => {
           ) : (
             <>
               <CustomButton title={"Back"} />
-              <div className="my-5"></div>
-              <div className="row mob-view">
-                <div className="col-6 pe-5">
+              <div className=" my-5 row mob-view">
+                <div className="col-6">
                   <img
-                    className="w-100 shadow-lg img-flag"
+                    className=" shadow-lg img-flag"
                     src={data?.flags.png}
                     alt={data?.name.official}
                   />
                 </div>
                 <div className="col-6 m">
-                  <h3 className="countryName">{data?.name.official}</h3>
+                  <h3 className="countryName">{data?.name.common}</h3>
                   <div
                     className="row flag-detail"
                     style={
@@ -91,30 +95,30 @@ const CountryDetail = () => {
                         <b style={{ fontSize: "16px", fontWeight: "600px" }}>
                           Native Name:{" "}
                         </b>
-                        {data &&
-                          Object.entries(data?.name.nativeName).map(
-                            ([key, val], index) => {
-                              const name = `${val.common}`;
-                              const Nativename =
-                                index === 0 ? name : `, ${name}`;
-                              return (
-                                <span
-                                  key={Nativename}
-                                  style={{
-                                    fontSize: "16px",
-                                    fontWeight: "300px",
-                                  }}
-                                >
-                                  {" "}
-                                  {Nativename}{" "}
-                                </span>
-                              );
+                        {
+                          <span
+                            key={
+                              Object.entries(data?.name.nativeName)[0][1].common
                             }
-                          )}
+                            style={{
+                              fontSize: "16px",
+                              fontWeight: "300px",
+                            }}
+                          >
+                            {Object.entries(data?.name.nativeName)[0][1].common}
+                          </span>
+                        }
                       </p>
                       <p>
                         <b>Population: </b>{" "}
-                        <span style={{ fontSize: "16px", fontWeight: "300px" }}>
+                        <span
+                          className="custom"
+                          style={{
+                            fontSize: "16px",
+                            fontWeight: "300px",
+                            textOverflow: "ellipsis",
+                          }}
+                        >
                           {data?.population.toLocaleString()}
                         </span>
                       </p>
@@ -126,18 +130,24 @@ const CountryDetail = () => {
                       </p>
                       <p>
                         <b>Sub Region: </b>{" "}
-                        <span style={{ fontSize: "16px", fontWeight: "300px" }}>
+                        <span
+                          className="custom"
+                          style={{ fontSize: "16px", fontWeight: "300px" }}
+                        >
                           {data?.subregion.toString()}
                         </span>
                       </p>
                       <p>
                         <b>Capital: </b>{" "}
-                        <span style={{ fontSize: "16px", fontWeight: "300px" }}>
+                        <span
+                          className="custom"
+                          style={{ fontSize: "16px", fontWeight: "300px" }}
+                        >
                           {data?.capital.toString()}
                         </span>
                       </p>
                     </div>
-                    <div className="col-6">
+                    <div className="col-6 rest-details">
                       <p>
                         <b>Top Level Domain: </b>{" "}
                         <span style={{ fontSize: "16px", fontWeight: "300px" }}>
@@ -156,7 +166,7 @@ const CountryDetail = () => {
                                   fontWeight: "300px",
                                 }}
                               >
-                                {currency}
+                                {currencyCodes.code(currency).currency}
                               </span>
                             );
                           })}
@@ -164,20 +174,25 @@ const CountryDetail = () => {
                       <p>
                         <b>Languages: </b>
                         {data &&
-                          Object.values(data?.languages).map((lang) => {
-                            return (
-                              <span
-                                key={lang}
-                                style={{
-                                  fontSize: "16px",
-                                  fontWeight: "300px",
-                                }}
-                              >
-                                {" "}
-                                {lang}{" "}
-                              </span>
-                            );
-                          })}
+                          Object.entries(data?.languages)
+                            .sort(([, langA], [, langB]) =>
+                              langA.localeCompare(langB)
+                            )
+                            .map(([key, val], index) => {
+                              const lang = `${val}`;
+                              const language = index === 0 ? lang : `, ${lang}`;
+                              return (
+                                <span
+                                  key={language}
+                                  style={{
+                                    fontSize: "16px",
+                                    fontWeight: "300px",
+                                  }}
+                                >
+                                  {language}
+                                </span>
+                              );
+                            })}
                       </p>
                     </div>
                     <div className="row">
@@ -241,29 +256,31 @@ const CountryDetail = () => {
                   </div>
                 </div>
               </div>
-              <div className="my-5"></div>
             </>
           )}
         </div>
+        <div className="last-div"></div>
       </div>
     );
   });
   return (
-    <div
-      style={
-        mode.type === CONSTANT.LIGHT_MODE.type
-          ? {
-              backgroundColor: CONSTANT.LIGHT_MODE.backgroundColor,
-              color: CONSTANT.LIGHT_MODE.textColor,
-            }
-          : {
-              backgroundColor: CONSTANT.DARK_MODE.backgroundColor,
-              color: CONSTANT.DARK_MODE.textColor,
-            }
-      }
-    >
-      {countryData}
-    </div>
+    <>
+      <div 
+        style={
+          mode.type === CONSTANT.LIGHT_MODE.type
+            ? {
+                backgroundColor: CONSTANT.LIGHT_MODE.cardBackground,
+                color: CONSTANT.LIGHT_MODE.textColor,
+              }
+            : {
+                backgroundColor: CONSTANT.DARK_MODE.backgroundColor,
+                color: CONSTANT.DARK_MODE.textColor,
+              }
+        }
+      >
+        {countryData}
+      </div>
+    </>
   );
 };
 export default CountryDetail;

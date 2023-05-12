@@ -37,7 +37,7 @@ const Navbar = () => {
           <div className="nav-item-1">Where in the world?</div>
           <div className="nav-item-2 " onClick={toggleMode}>
             <i
-              className={`fa fa-moon-o p-1 `}
+              className={`fa fa-moon-o p-2 `}
               style={{ fontsize: "16px", fontWeight: "800" }}
             ></i>
             {mode.type === CONSTANT.LIGHT_MODE.type

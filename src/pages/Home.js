@@ -11,6 +11,7 @@ import "../components/card/cardStyle.css";
 import Loader from "../components/Loader/Loader";
 import { useSelector } from "react-redux";
 const Home = () => {
+  const mode = useSelector((state) => state?.variable);
   useEffect(() => {
     fetchCountryData();
   }, []);
@@ -19,10 +20,8 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [searchText, setSearchText] = useState("");
   let [selectedRegion, setSelectedRegion] = useState("");
-  const mode = useSelector((state) => state?.variable);
   const fetchCountryData = () => {
     setIsLoading(true);
-    console.log("1isLoading-->", isLoading);
     fetch(
       `${CONSTANT.getAllCountries}?fields=name,population,region,capital,flags`
     )
@@ -33,13 +32,11 @@ const Home = () => {
         setCountriesData(data);
       });
     setIsLoading(false);
-    console.log("2isLoading-->", isLoading);
   };
 
   if (selectedRegion === "All") {
     selectedRegion = "";
   }
-
   const filteredCountriesData = countriesData.filter(
     (country) =>
       country.name.common.toLowerCase().includes(searchText.toLowerCase()) &&
@@ -62,13 +59,11 @@ const Home = () => {
         }
       >
         <Navbar />
-
         {isLoading ? (
           <Loader />
         ) : (
           <>
             <div className="margin-l-r base spc-btw">
-              {/* <div style={{ color: "red" }}>{isLoading}</div> */}
               <SearchBarComp
                 searchText={searchText}
                 setSearchText={setSearchText}
@@ -84,10 +79,9 @@ const Home = () => {
                   <div
                     key={countyData.name.official}
                     onClick={() =>
-                      navigate(`/country-detail/${countyData.name.common}`, {
+                      navigate(`/country-detail/${countyData?.name.common}`, {
                         state: {
                           countryName: countyData.capital[0],
-                          mode: mode,
                         },
                       })
                     }
@@ -97,6 +91,21 @@ const Home = () => {
                 );
               })}
             </div>
+            <div className="py-3"></div>
+            <div
+              className={filteredCountriesData.length === 1 ? "last-div-home" : ""}
+              style={
+                mode.type === CONSTANT.LIGHT_MODE.type
+                  ? {
+                      backgroundColor: CONSTANT.LIGHT_MODE.cardBackground,
+                      color: CONSTANT.LIGHT_MODE.textColor,
+                    }
+                  : {
+                      backgroundColor: CONSTANT.DARK_MODE.backgroundColor,
+                      color: CONSTANT.DARK_MODE.textColor,
+                    }
+              }
+            ></div>
           </>
         )}
       </div>
