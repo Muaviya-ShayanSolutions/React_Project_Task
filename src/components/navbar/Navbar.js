@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import "../.././index.css";
 import "./navbarStyle.css";
+
 const Navbar = () => {
   const [mode, setMode] = useState(() => {
     return "light";
@@ -23,7 +24,8 @@ const Navbar = () => {
           <div className="nav-item-1">Where in the world?</div>
           <div className="nav-item-2 " onClick={toggleMode}>
             <i className="fa fa-moon-o p-1" style={{ fontsize: "16px",fontWeight:"800" }}></i>
-            <b>Light Mode</b>
+            {/* <b >Light Mode</b> */}
+            Light Mode
           </div>
         </div>
       </div>

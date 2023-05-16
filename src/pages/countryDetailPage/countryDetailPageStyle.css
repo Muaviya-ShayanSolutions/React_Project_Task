@@ -29,6 +29,7 @@
   img{
     width: 700px;
     height: 400px;
+    box-shadow: rgba(0, 0, 0, 1) 0px 1px 4px;
   }
   .button-country {
     background-color: white; /* Green */
@@ -39,10 +40,13 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 24px 5px;
+    margin: 5px 10px 10px 5px;
     cursor: pointer;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }
+  .border-buttons{
+    margin: 20px 0px 0px 0px;
   }
 
   
