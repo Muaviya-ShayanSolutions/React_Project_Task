@@ -1,0 +1,48 @@
+.main-cont{
+  top: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  bottom: 0;
+}
+.countryName{
+    font-weight: 600;
+    margin: 30px 0px;
+
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto ;
+    padding: 10px;
+    column-gap: 50px;
+  }
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+  }
+  img{
+    width: 700px;
+    height: 400px;
+  }
+  .button-country {
+    background-color: white; /* Green */
+    border: none;
+    color: black;
+    padding: 3px 45px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 24px 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }
+
+  
