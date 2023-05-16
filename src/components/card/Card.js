@@ -31,21 +31,28 @@ const Card = (props) => {
           </h5>
           <div className="card-desc">
             <div className="popoulation-mob">
-              <p>
-                <b>Population: </b>{" "}
-                <span style={{ paddingTop: "10px" }}>
+              <p className="margin-t-b">
+                <b style={{ fontSize: "15px" }}>{"Population: "} </b>
+                <span style={{ paddingTop: "10px", fontSize: "16px" }}>
                   {props.country.population.toLocaleString()}
                 </span>
               </p>
             </div>
 
-            <p>
-              <b>Region: </b> {props.country.region}
+            <p className="margin-t-b">
+              <b style={{ fontSize: "15px" }}>{"Region: "} </b>
+              <span style={{ fontSize: "16px" }}>{props.country.region}</span>
             </p>
             <div className="popoulation-mob">
-            <p className="padding-null">
-              <b>Capital: </b> {props.country.capital[0]}
-            </p></div>
+              <p className="padding-null margin-t-b">
+                <b style={{ fontSize: "15px" }}>{"Capital:  "}</b>
+                <span style={{ fontSize: "16px" }}>
+                  {props.country.capital[0]
+                    ? props.country.capital[0]
+                    : "No Capital Available"}
+                </span>
+              </p>
+            </div>
           </div>
         </div>
       </div>

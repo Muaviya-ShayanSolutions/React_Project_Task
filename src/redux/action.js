@@ -1,4 +1,4 @@
 export const setModeVariable = (variable) => ({
-    type: 'SET_VARIABLE',
-    payload: variable,
-  });
+  type: "SET_MODE_VARIABLE",
+  payload: variable,
+});

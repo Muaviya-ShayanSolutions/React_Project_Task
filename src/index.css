@@ -2,13 +2,9 @@
   font-family: Nunito Sans;
 }
 
-body {
-  height: 100vh;
-}
-
 .base.margin-l-r {
   margin-top: 50px;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 .base {
   margin-top: 50px;
@@ -31,51 +27,97 @@ body {
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-
-@media only screen and (max-width: 2440px) {
+@media only screen and (max-width: 3000px) {
   .last-div {
-    height: 300px;
+    height: 940px;
     margin-top: -1px;
   }
   .last-div-home {
-    height: 330px;
+    height: 1000px;
+    margin-top: -1px;
+  }
+  .no-element {
+    height: 2800px;
     margin-top: -1px;
   }
 }
-
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 2440px) {
   .last-div {
-    height: 250px;
+    height: 500px;
     margin-top: -1px;
   }
   .last-div-home {
-    height: 310px;
+    height: 630px;
+    margin-top: -1px;
+  }
+  .no-element {
+    height: 1000px;
+    margin-top: -1px;
+  }
+}
+@media only screen and (max-width: 1500px) {
+  .last-div {
+    height: 500px;
+    margin-top: -1px;
+  }
+  .last-div-home {
+    height: 630px;
+    margin-top: -1px;
+  }
+  .no-element {
+    height: 1300px;
+    margin-top: -1px;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .last-div {
+    height: 480px;
+    margin-top: -1px;
+  }
+  .last-div-home {
+    height: 976px;
+    margin-top: -1px;
+  }
+  .no-element {
+    height: 965px;
     margin-top: -1px;
   }
 }
 @media only screen and (max-width: 920px) {
   .last-div {
-    height: 200px;
+    height: 452px;
     margin-top: -1px;
   }
   .last-div-home {
-    height: 340px;
+    height: 480px;
+    margin-top: -1px;
+  }
+  .no-element {
+    height: 960px;
     margin-top: -1px;
   }
 }
 @media only screen and (max-width: 770px) {
   .last-div {
-    height: 180px;
+    height: 380px;
+    margin-top: -1px;
+  }
+  .no-element {
+    height: 960px;
     margin-top: -1px;
   }
   .last-div-home {
-    height: 310px;
+    height: 475px;
     margin-top: -1px;
   }
 }
 @media only screen and (max-width: 500px) {
   .spc-btw {
     display: block;
+  }
+  .no-element {
+    height: 550px;
+    margin-top: -1px;
   }
   .last-div {
     height: 5px;
@@ -86,6 +128,14 @@ body {
   .spc-btw {
     display: block;
   }
+  .no-element {
+    height: 700px;
+    margin-top: -1px;
+  }
+  .no-element {
+    height: 550px;
+    margin-top: -1px;
+  }
   .last-div {
     height: 5px;
     margin-top: -1px;
@@ -94,6 +144,10 @@ body {
 @media only screen and (max-width: 380px) {
   .spc-btw {
     display: block;
+  }
+  .no-element {
+    height: 550px;
+    margin-top: -1px;
   }
   .button-back {
     margin: 4px 10px;
