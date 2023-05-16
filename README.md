@@ -16,7 +16,7 @@ Our project is designed with the user in mind, providing a powerful yet intuitiv
 
 ### Home Page Dark
 
-![Screenshot1](./images/Home_Page_DARK.PNG)
+![Screenshot1](./images/Home_Page_Dark.PNG)
 
 ### Country Detail
 
