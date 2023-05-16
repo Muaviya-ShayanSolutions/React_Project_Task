@@ -3,7 +3,13 @@
 }
 
 .has-search .form-control {
-  padding: 14px 40px;
+  padding: 15px 67px;
+  font-weight: 600px;
+  border: none;
+}
+.form-control::placeholder {
+  color: hsl(0, 0%, 52%);
+  font-weight: 600px;
 }
 
 .has-search .form-control-feedback {
@@ -14,6 +20,56 @@
   height: 2.375rem;
   line-height: 3.3rem;
   text-align: center;
+  margin-left: 10px;
+
   pointer-events: none;
   color: #aaa;
+}
+
+@media only screen and (max-width: 1024px) {
+  .main {
+    width: 670px;
+  }
+}
+@media only screen and (max-width: 970px) {
+  .main {
+    width: 550px;
+  }
+}
+@media only screen and (max-width: 850px) {
+  .main {
+    width: 500px;
+  }
+}
+@media only screen and (max-width: 770px) {
+  .main {
+    width: 470px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .main {
+    width: 100%;
+  }
+  .dropdown {
+    margin-top: 40px;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  .main {
+    width: 100%;
+  }
+  .dropdown {
+    margin-top: 40px;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .main {
+    width: 100%;
+  }
+  .dropdown {
+    margin-top: 40px;
+  }
 }
