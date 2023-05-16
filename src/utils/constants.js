@@ -4,6 +4,7 @@ export const BaseURL = "https://restcountries.com/v3.1/";
 export const getAllCountries = `${BaseURL}all`;
 export const getCountryDetail = `${BaseURL}capital/`;
 export const getCountryByCode = `${BaseURL}alpha/`;
+export const getCountryByOfficialName = `${BaseURL}name/`;
 //Colors
 
 export const LIGHT_MODE = {

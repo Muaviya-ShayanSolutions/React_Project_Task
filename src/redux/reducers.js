@@ -5,7 +5,7 @@ const initialState = {
 
 export const variableReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "SET_VARIABLE":
+    case "SET_MODE_VARIABLE":
       return {
         ...state,
         variable: action.payload,

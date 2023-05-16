@@ -24,11 +24,11 @@
   display: block;
 }
 .dropdown-item-light li:hover {
-  background-color: #bdbaba;
+  background-color: hsl(20, 30%, 95%);
 }
 
 .dropdown-item-dark li:hover {
-  background-color: #2e2929;
+  background-color: hsl(207, 26%, 17%);
 }
 .dropdown-menu {
   display: flex !important;
@@ -39,8 +39,4 @@
   border: none;
   margin-top: 5px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-}
-@media only screen and (max-width: 380px) {
-}
-@media only screen and (max-width: 430px) {
 }

@@ -18,35 +18,31 @@ const Navbar = () => {
   };
 
   return (
-    <>
-      <div
-        className="nav-main "
-        style={
-          mode.type === CONSTANT.LIGHT_MODE.type
-            ? {
-                backgroundColor: CONSTANT.LIGHT_MODE.backgroundColor,
-                color: CONSTANT.LIGHT_MODE.textColor,
-              }
-            : {
-                backgroundColor: CONSTANT.DARK_MODE.cardBackground,
-                color: CONSTANT.DARK_MODE.textColor,
-              }
-        }
-      >
-        <div className="nav-cont margin-l-r">
-          <div className="nav-item-1">Where in the world?</div>
-          <div className="nav-item-2 " onClick={toggleMode}>
-            <i
-              className={`fa fa-moon-o p-2 `}
-              style={{ fontsize: "16px", fontWeight: "800" }}
-            ></i>
-            {mode.type === CONSTANT.LIGHT_MODE.type
-              ? "Dark Mode"
-              : "Light Mode"}
-          </div>
+    <div
+      className="nav-main "
+      style={
+        mode.type === CONSTANT.LIGHT_MODE.type
+          ? {
+              backgroundColor: CONSTANT.LIGHT_MODE.backgroundColor,
+              color: CONSTANT.LIGHT_MODE.textColor,
+            }
+          : {
+              backgroundColor: CONSTANT.DARK_MODE.cardBackground,
+              color: CONSTANT.DARK_MODE.textColor,
+            }
+      }
+    >
+      <div className="nav-cont margin-l-r">
+        <div className="nav-item-1">Where in the world?</div>
+        <div className="nav-item-2 " onClick={toggleMode}>
+          <i
+            className={`fa fa-moon-o p-2 `}
+            style={{ fontsize: "16px", fontWeight: "800" }}
+          ></i>
+          {mode.type === CONSTANT.LIGHT_MODE.type ? "Dark Mode" : "Light Mode"}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default Navbar;
