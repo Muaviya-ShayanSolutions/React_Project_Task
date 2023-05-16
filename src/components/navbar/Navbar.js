@@ -3,7 +3,7 @@ import React from "react";
 import "../.././index.css";
 import "./navbarStyle.css";
 import * as CONSTANT from "../../utils/constants.js";
-import { setVariable } from "../../redux/action";
+import { setModeVariable } from "../../redux/action";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 const Navbar = () => {
@@ -11,9 +11,9 @@ const Navbar = () => {
   const mode = useSelector((state) => state?.variable);
   const toggleMode = () => {
     if (mode.type === CONSTANT.LIGHT_MODE.type) {
-      dispatch(setVariable(CONSTANT.DARK_MODE));
+      dispatch(setModeVariable(CONSTANT.DARK_MODE));
     } else {
-      dispatch(setVariable(CONSTANT.LIGHT_MODE));
+      dispatch(setModeVariable(CONSTANT.LIGHT_MODE));
     }
   };
 
@@ -37,7 +37,7 @@ const Navbar = () => {
           <div className="nav-item-1">Where in the world?</div>
           <div className="nav-item-2 " onClick={toggleMode}>
             <i
-              className={`fa fa-moon-o p-1 `}
+              className={`fa fa-moon-o p-2 `}
               style={{ fontsize: "16px", fontWeight: "800" }}
             ></i>
             {mode.type === CONSTANT.LIGHT_MODE.type

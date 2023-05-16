@@ -30,15 +30,22 @@ const Card = (props) => {
             <b>{props.country.name.common}</b>
           </h5>
           <div className="card-desc">
-            <p>
-              <b>Population: </b> {props.country.population.toLocaleString()}
-            </p>
+            <div className="popoulation-mob">
+              <p>
+                <b>Population: </b>{" "}
+                <span style={{ paddingTop: "10px" }}>
+                  {props.country.population.toLocaleString()}
+                </span>
+              </p>
+            </div>
+
             <p>
               <b>Region: </b> {props.country.region}
             </p>
-            <p style={{ paddingBottom: "20px" }}>
+            <div className="popoulation-mob">
+            <p className="padding-null">
               <b>Capital: </b> {props.country.capital[0]}
-            </p>
+            </p></div>
           </div>
         </div>
       </div>

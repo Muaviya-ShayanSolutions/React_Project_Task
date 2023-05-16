@@ -22,13 +22,7 @@ const CustomButton = (props) => {
                 color: CONSTANT.DARK_MODE.textColor,
               }
         }
-        onClick={() =>
-          navigate("/", {
-            state: {
-              mode: props.mode,
-            },
-          })
-        }
+        onClick={() => navigate("/")}
       >
         <FontAwesomeIcon icon={faArrowLeftLong} />
         <span className="mx-2"></span>

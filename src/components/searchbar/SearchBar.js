@@ -16,9 +16,9 @@ const SearchBarComp = ({ searchText, setSearchText }) => {
             style={
               mode.type === CONSTANT.LIGHT_MODE.type
                 ? {
-                    color: CONSTANT.LIGHT_MODE.inputColor,
+                    color: CONSTANT.LIGHT_MODE.textColor,
                   }
-                : { color: "#ffffff" }
+                : { color: CONSTANT.DARK_MODE.textColor }
             }
           ></span>
           <input
@@ -26,11 +26,11 @@ const SearchBarComp = ({ searchText, setSearchText }) => {
               mode.type === CONSTANT.LIGHT_MODE.type
                 ? {
                     backgroundColor: CONSTANT.LIGHT_MODE.backgroundColor,
-                    color: CONSTANT.LIGHT_MODE.inputColor,
+                    color: CONSTANT.LIGHT_MODE.textColor,
                   }
                 : {
                     backgroundColor: CONSTANT.DARK_MODE.cardBackground,
-                    color: CONSTANT.DARK_MODE.inputColor,
+                    color: CONSTANT.DARK_MODE.textColor,
                   }
             }
             type="text"

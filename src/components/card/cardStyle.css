@@ -1,14 +1,19 @@
 .card-main {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 10px 50px;
+  grid-gap: 25px 65px;
 }
 .margin-l-r {
-  max-width: 1330px;
+  max-width: 90%;
   margin: auto;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 .card {
   width: 100%;
+  
   margin-top: 18px;
   margin-bottom: 18px;
   border-radius: 5px;
@@ -19,12 +24,17 @@
 .card-title {
   font-weight: 800;
   padding-top: 15px;
+  padding-left: 6px;
   font-size: 18px;
   padding-bottom: 10px;
 }
 .card-desc {
   line-height: 10px;
+  padding-left: 6px;
   font-size: 14px;
+}
+.padding-null{
+  padding-bottom: 20px;
 }
 .card img {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 0px;
@@ -62,15 +72,29 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
-@media only screen and (max-width: 490px) {
+@media only screen and (max-width: 500px) {
+  .card-desc {
+    line-height: 10px;
+  }
+  .padding-null{
+    padding-bottom: 0px;
+  }
+  .popoulation-mob{
+    line-height: normal;
+  }
 }
 @media only screen and (max-width: 430px) {
   .margin-l-r {
     max-width: 85%;
   }
   .card-main {
+    justify-content: center;
     display: block;
     grid-template-columns: repeat(1, 1fr);
+  }
+  .card {
+    margin-left: 25px;
+    width: 85%;
   }
 }
 @media only screen and (max-width: 380px) {
