@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 const Navbar = () => {
   const dispatch = useDispatch();
   const mode = useSelector((state) => state?.variable);
+  //Toggle button which handles Dark / Light Mode
   const toggleMode = () => {
     if (mode.type === CONSTANT.LIGHT_MODE.type) {
       dispatch(setModeVariable(CONSTANT.DARK_MODE));

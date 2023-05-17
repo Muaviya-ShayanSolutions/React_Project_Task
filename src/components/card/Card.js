@@ -3,6 +3,7 @@ import * as CONSTANT from "../../utils/constants.js";
 import "./cardStyle.css";
 import { useSelector } from "react-redux";
 const Card = (props) => {
+  //Getting mode variable from redux
   const mode = useSelector((state) => state?.variable);
   const countryCard = (
     <>

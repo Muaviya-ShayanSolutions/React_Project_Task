@@ -1,6 +1,7 @@
 /* eslint-disable no-const-assign */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-self-assign */
+
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar/Navbar";
@@ -22,11 +23,19 @@ const Home = () => {
   useEffect(() => {
     fetchCountryData();
   }, []);
+  //useState for setting selectedRegion to all to show all regions country
   useEffect(() => {
     if (selectedRegion === "All") {
       setSelectedRegion("");
     }
   }, [selectedRegion]);
+  /* Fetching All Country Flag details with only these fields
+     - name
+     - population
+     - region
+     - capital
+     - flags
+  */
   const fetchCountryData = () => {
     setIsLoading(true);
     fetch(
@@ -41,6 +50,7 @@ const Home = () => {
     setIsLoading(false);
   };
 
+  //Functionality to search and filter countries
   const filteredCountriesData = countriesData.filter(
     (country) =>
       country.name.common.toLowerCase().includes(searchText.toLowerCase()) &&
@@ -85,10 +95,10 @@ const Home = () => {
                     if (countyData.capital.length !== 0) {
                       navigate(`/country-detail/${countyData?.name.common}`, {
                         state: {
-                          countryName: countyData.capital[0],
+                          capitalName: countyData.capital[0],
                         },
                       });
-                    }else{
+                    } else {
                       navigate(`/country-detail/${countyData?.name.common}`, {
                         state: {
                           countryNameWithNoCap: countyData.name.common,

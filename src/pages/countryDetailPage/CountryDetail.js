@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import currencyCodes from "currency-codes";
 const CountryDetail = (currency) => {
   const location = useLocation();
-  const countryName = location.state.countryName;
+  const capitalName = location.state.capitalName;
   const mode = useSelector((state) => state?.variable);
   const [countryDetail, setCountryDetail] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -19,11 +19,25 @@ const CountryDetail = (currency) => {
   useEffect(() => {
     fetchCountryDetail();
   }, []);
+  /* Fetching Single Country Flag details with only these fields
+     - name
+     - population
+     - region
+     - capital
+     - flags
+     - subregion
+     - tld
+     - currencies
+     - languages
+     - borders
+  */
   const fetchCountryDetail = () => {
     setIsLoading(true);
     let url;
-    if (countryName) {
-      url = `${CONSTANT.getCountryDetail}${countryName}?fields=name,population,region,capital,flags,subregion,tld,currencies,languages,borders`;
+    /*Setting URL on the base of Its Capital. 
+    IF Capital exsits API call will be on the base of capital else call will be on its official name.*/
+    if (capitalName) {
+      url = `${CONSTANT.getCountryDetail}${capitalName}?fields=name,population,region,capital,flags,subregion,tld,currencies,languages,borders`;
     } else {
       url = `${CONSTANT.getCountryByOfficialName}${location.state.countryNameWithNoCap}?fields=name,population,region,capital,flags,subregion,tld,currencies,languages,borders`;
     }
@@ -33,7 +47,7 @@ const CountryDetail = (currency) => {
       })
       .then((data) => {
         setCountryDetail(data);
-
+        //Getting Borders name on the behalf of abbreviations of border names
         Promise.all(
           data?.[0]?.borders.map((country) => {
             return fetch(
@@ -60,6 +74,7 @@ const CountryDetail = (currency) => {
 
   const navigate = useNavigate();
   const countryData = countryDetail.map((data) => {
+    //React component for border buttons
     const borderButtons = (
       <>
         {data?.borders.length > 0 ? (
@@ -112,6 +127,7 @@ const CountryDetail = (currency) => {
         )}
       </>
     );
+    //React component for flag details
     const flagDetails = (
       <div className="col-6 m">
         <h3 className="countryName">{data?.name.common}</h3>

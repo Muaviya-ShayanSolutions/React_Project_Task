@@ -8,6 +8,7 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 function DropdownMenu(props) {
   const mode = useSelector((state) => state?.variable);
+
   const regions = ["All", "Africa", "Americas", "Asia", "Europe", "Oceania"];
 
   const [isOpen, setIsOpen] = useState(false);
@@ -40,14 +41,14 @@ function DropdownMenu(props) {
       >
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <span>{props.selectedRegion || "Filter by Region"}</span>
-          <span style={{ paddingTop:"2px" }}><FontAwesomeIcon icon={faAngleDown} /></span>
-          
+          <span style={{ paddingTop: "2px" }}>
+            <FontAwesomeIcon icon={faAngleDown} />
+          </span>
         </div>
       </button>
 
       {isOpen && (
         <ul
-          
           className={
             mode.type === CONSTANT.LIGHT_MODE.type
               ? "dropdown-item-light dropdown-menu"
